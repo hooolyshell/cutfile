@@ -1,13 +1,29 @@
 // SPDX-FileCopyrightText: 2026 hooolyshell
 // SPDX-License-Identifier: MIT
 
+#include "cutfile.h"
+#include <filesystem>
 #include <iostream>
-namespace {
-auto bigger = [](int a, int b) { return a > b; };
-} // namespace
-int main(void) {
-    std::cout << "Hello, World!" << std::endl;
-    std::cout << "call bigger(2,1):" << ::bigger(2, 1) << std::endl;
-    std::cout << "Bye!" << std::endl;
+
+int main() {
+    std::filesystem::path input = R"(D:\test.txt)";
+    std::filesystem::path outDir = R"(D:\cut_output)";
+
+    std::error_code ec;
+    std::filesystem::create_directories(outDir, ec);
+    if (ec) {
+        std::cerr << "Failed to create output directory: " << ec.message()
+                  << '\n';
+        return 1;
+    }
+
+    hooolyshell::CutFile cutter;
+    int result = cutter.Cut(input, 2, outDir);
+    if (result != 0) {
+        std::cerr << "Cut failed, error code: " << result << '\n';
+        return 1;
+    }
+
+    std::cout << "Cut completed.\n";
     return 0;
 }

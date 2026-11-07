@@ -3,7 +3,7 @@
 
 #include "cutfile.h"
 
-int hooolyshell::CutFile::ReadSettings(fs::path &path) {
+int hooolyshell::CutFile::ReadSettings(const fs::path &path) {
     if (!fs::exists(path)) {
         cerr << "File not found!";
         return FILE_NOT_FOUND;
@@ -20,7 +20,7 @@ int hooolyshell::CutFile::ReadSettings(fs::path &path) {
     return OK;
 }
 
-int hooolyshell::CutFile::Cut(fs::path &file, const int sizePart,
+int hooolyshell::CutFile::Cut(const fs::path &file, const int sizePart,
                               fs::path &outDir) {
     if (!fs::exists(file)) {
         cerr << "ERR: File not found!" << endl;
