@@ -7,8 +7,10 @@
 #include <filesystem>
 #include <fstream>
 #include <iostream>
+#include <queue>
 #include <string>
 #include <vector>
+
 
 namespace hooolyshell {
 // using & namespace
@@ -46,7 +48,7 @@ class CutFile {
         OK = 0
     };
     int Cut(const fs::path &path, const int partSize, fs::path &outDir);
-    int Merge(fs::path &path);
+    int Merge(const fs::path &path);
     int ReadSettings(const fs::path &path);
 };
 } // namespace hooolyshell
